@@ -1,0 +1,23 @@
+I first created a table using the information known about the stores inventory
+CREATE TABLE inventory (id INTEGER Primary key, name TEXT, quantity INTEGER, price INTEGER, sales INTEGER);
+INSERT INTO inventory VALUES (1, "button-ups", 26, 25, 856);
+INSERT INTO inventory VALUES (2, "short sleeves", 15, 20, 625);
+INSERT INTO inventory VALUES (3, "jeans", 29,40, 954);
+INSERT INTO inventory VALUES (4, "skirts", 12, 15, 244);
+INSERT INTO inventory VAlUES (5, "hats" , 17, 10, 170);
+INSERT INTO inventory VALUES (6, "long sleeves", 22, 20, 463);
+INSERT INTO inventory VALUES (7, "sandals", 14, 20, 310);
+INSERT INTO inventory VALUES (8, "sneakers", 40, 41, 780);
+INSERT INTO inventory VALUES (9, "shorts", 25, 37, 593);
+INSERT INTO inventory VALUES (10, "sweat pants", 24, 15, 240);
+INSERT INTO inventory VALUES (11, "necklaces", 28, 5, 178);
+INSERT INTO inventory VALUES (12, "socks", 37, 10, 233); 
+INSERT INTO inventory VALUES (13, "jackets", 22, 35, 433); 
+INSERT INTO inventory VALUES (14, "hoodies", 34, 40, 565);
+INSERT INTO inventory VALUES (15, "backpacks", 36, 35, 375);
+
+Then I organized the table by item price in descending order
+SELECT * FROM inventory ORDER BY price desc;
+
+And finally calculated the total sales made 
+Select SUM (sales) from (inventory) 
