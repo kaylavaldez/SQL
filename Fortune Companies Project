@@ -56,24 +56,19 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
-First, the client would like to know the total revenue of each industry.
-Select SUM(revenue) As total_revenue, industry
-From fortune_companies Group By (industry);
+# Assign all the companies in the Healthcare industry as "mother friendly workplace", "acceptable", or "abysmal" based on the maternity leave offered. 
+SELECTcompany_name,
+CASE 
+  WHEN maternity_leave_weeks >= 10 THEN 'mother friendly workplace'
+  WHEN maternity_leave_weeks >= 8 THEN 'acceptable'
+  ELSE 'abysmal'
+END as mother_friendliness
+FROM fortune_companies
+WHERE industry='Healthcare';
 
-Next they are wondering which fortune comanies Health Benefits and which do not
-and if the number employees(in descending order) corresponds at all.
+# Which industries have an average revenue of at least $200 Billion, and what are their avg revenues?
+SELECT industry, ROUND(AVG(revenue),1) as avg_revenue_billions
+FROM fortune_companies
+GROUP BY industry
+HAVING avg_revenue_billions>=200
 
-Select company_name, employees, 
-Case When healthcare_benefits =1 Then "Offers Health Benefits"
-Else "Does Not Offer Health Benefits" 
-End as "Healthcare"
-From fortune_companies
-Order By employees desc;
-
-Finally they'd like to know what is the average paid time off in each industry, 
-but they are only interested if the time off is two weeks or more. 
-Select industry, 
-ROUND (AVG(paid_time_off_days)) As PTO
-From fortune_companies
-Group by industry
-Having PTO >=14;
